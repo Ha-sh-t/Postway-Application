@@ -1,0 +1,19 @@
+{
+  "name": "postaway",
+  "version": "1.0.0",
+  "description": "This platform should enable users to create posts with text and media and support user engagement with likes and comments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.9",
+    "winston": "^3.17.0"
+  }
+}
