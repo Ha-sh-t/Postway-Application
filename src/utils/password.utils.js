@@ -1,42 +1,42 @@
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
-const min = 1000000;
+// 6-digit OTP range
+const min = 100000;
 const max = 999999;
+
 /**
- * Hashes a plain-text password using bcrypt
- * 
- * @param {string} password - The plain password to hash
- * @returns {Promise<string>} The hashed password
- * @throws {Error} If hashing fails
+ * Hash a plain-text password
+ * @param {string} password
+ * @returns {Promise<string>} hashed password
  */
-    export async function hashPassword(password){
-       
-        try{
-            const saltRounds = 13
-            const hash = await bcrypt.hash(password , saltRounds)
-    
-            return hash
-        }
-        catch(error){
-            throw error;
-        }
-
+export async function hashPassword(password) {
+    try {
+        const saltRounds = 10; // balance between speed & security
+        return await bcrypt.hash(password, saltRounds);
+    } catch (error) {
+        throw new Error("Password hashing failed: " + error.message);
     }
+}
 
-    export async function isAuthentic(password , hashedPassword){
-        console.log(hashedPassword)
-        console.log(typeof password);
-        try{
-           const result = await bcrypt.compare(password , hashedPassword );
-           console.log("result :",result);
-           return result;
-
-        }catch(error){
-            throw error;
-        }
+/**
+ * Compare plain password with hashed password
+ * @param {string} password - user input
+ * @param {string} hashedPassword - stored hash
+ * @returns {Promise<boolean>} true if match
+ */
+export async function isAuthentic(password, hashedPassword) {
+    try {
+        return await bcrypt.compare(password, hashedPassword);
+    } catch (error) {
+        throw new Error("Password verification failed: " + error.message);
     }
+}
 
-    export async function getOtp(){
-        const num = Math.floor(Math.random()*(max-min +1))+min;
-        return num.toString();
-    }
+/**
+ * Generate a random 6-digit OTP as string
+ * @returns {string} OTP
+ */
+export function getOtp() {
+    const num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return num.toString();
+}
