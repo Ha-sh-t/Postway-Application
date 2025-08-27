@@ -30,7 +30,7 @@ class OtpService {
         if (!user) throw new NotFoundError("Please enter registered email.");
 
         // generate plain OTP (e.g. "123456")
-        const plainOtp = await getOtp();
+        const plainOtp =  getOtp();
         const hashedOtp = await hashPassword(plainOtp);
 
         // save OTP document in DB
@@ -38,9 +38,9 @@ class OtpService {
         await this.otpRepository.save(otpData);
 
         // send OTP via email
-        sendEmail(email, "Password Reset OTP", buildHtml(user.name, plainOtp));
+        await sendEmail(email, "Password Reset OTP", buildHtml(user.name, plainOtp));
 
-        return { success: true, message: "OTP sent to your registered email" };
+        return { success: true, message: "OTP sent to your registered email", otpId: otpData._id };
     }
 
     /**
@@ -53,12 +53,13 @@ class OtpService {
      */
     async verifyOTP(otp, otpId, email) {
         // verify user
+        console.log(otp , otpId , email);
         const user = await this.userRepository.find(email);
         if (!user) throw new NotFoundError("Email is not registered.");
 
         // check if otp record exists
         const otpData = await this.otpRepository.getOtp(otpId);
-        if (!otpData) throw new NotFoundError("Invalid OTP ID");
+        if (!otpData) throw new NotFoundError("Invalid OTP ID or OTP is expired ");
 
         // check if otp expired or already used
         if (otpData.used || otpData.expiresAt < Date.now()) {
@@ -66,7 +67,7 @@ class OtpService {
         }
 
         // compare entered otp with stored hashed otp
-        const isOtpValid = await isAuthentic(otp, otpData.otp);
+        const isOtpValid = await isAuthentic(otp.toString(), otpData.otp);
         if (!isOtpValid) throw new ValidationError("Invalid OTP");
 
         // mark OTP as used
@@ -86,12 +87,13 @@ class OtpService {
      */
     async resetPassword(newPassword, confirmPassword, email, token) {
         // verify reset token
-        if (!await verifyJWTtoken(token)) {
+        if (!verifyJWTtoken(token)) {
             throw new ValidationError("Password reset token is invalid or missing.");
         }
 
         // both passwords must match
-        if (newPassword !== confirmPassword) {
+        console.log(newPassword , confirmPassword)
+        if (newPassword.toString() !== confirmPassword.toString()) {
             throw new ValidationError("Passwords do not match");
         }
 

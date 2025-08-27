@@ -4,7 +4,7 @@ export default class OtpModel{
         this.otp=otp;
       
         this.createdAt=new Date();
-        this.expiresAt = new Date() + 5*60*1000;
+        this.expiresAt = new Date(Date.now() + 5*60*1000);
         this.used = used
     }
 }

@@ -38,7 +38,7 @@ class OtpController {
         throw new ApplicationError("OTP ID, OTP, and email are required", 400);
       }
 
-      const result = await this.otpService.verifyOTP(otpId, otp, email);
+      const result = await this.otpService.verifyOTP(otp, otpId, email);
       res.status(200).json(result);
     } catch (error) {
       next(error);
@@ -60,9 +60,9 @@ class OtpController {
       }
 
       const result = await this.otpService.resetPassword(
-        email,
         newPassword,
         confirmPassword,
+        email,
         token
       );
       res.status(200).json(result);

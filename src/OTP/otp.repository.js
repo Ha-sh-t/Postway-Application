@@ -15,7 +15,6 @@ class OtpRepository {
      */
     async save(otp) {
         const { insertedId } = await this.collection.insertOne(otp);
-        return insertedId;
     }
 
     /**

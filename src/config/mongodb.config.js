@@ -16,7 +16,7 @@ const connectToMongoDB = async ()=>{
     await client.connect();
     await client.db(dbName).command({ping:1})
     console.log("Successfully connected to mongodb.")
-await client.db("dbName").collection('OTP').createIndex(
+await client.db(dbName).collection('OTP').createIndex(
   { expiresAt: 1 },
   { expireAfterSeconds: 0 }
 );
