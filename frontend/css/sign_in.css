@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding:0;
+}
+body{
+    background-color: rgba(0, 0, 0, 0.115);
+}
+.signIn-container{
+    width:35%;
+    height: auto;
+    display: flex;
+    /* border: 1px solid; */
+    border-radius:10px;
+    padding:5px;
+    background-color: white;
+
+}
+
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close-button{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.close-button img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.signIn-sub-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    height: 90%;
+    /* border: 1px solid; */
+}
+.signIn-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signIn-logo img{
+    max-width: 50px;
+    max-height: 50px;
+    margin: 5px;
+}
+
+.signIn-container h2{
+    margin:20px 0 20px 0;
+}
+
+.signIn-container ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.signIn-container ul li{
+    width: 90%;
+    min-height: 30px;
+    border: 1px solid;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding:5px;
+}
+
+.signIn-container .divider{
+    height: auto;
+    margin:0 0 5px 0;
+    padding: 2px;
+    border: 0;
+
+}
+.signIn-container .divider span{
+    width:45%;
+    border: 1px solid;
+    margin:5px;
+}
+
+
+.signIn-container .form{
+    width: 90%;
+    height: auto;
+    border:none;
+}
+.signIn-container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding:5px 0px;
+}
+
+.signIn-container form input{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    padding:5px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.signIn-container button{
+    padding:2px 0px;
+    width:100%;
+    height:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.signIn-container .next-button{
+    color:white;
+    background-color: black;
+    font-weight:600;
+    cursor: pointer;
+
+}
+
+.signIn-container .forgot-button{
+    background-color: white;
+    font-weight:600;
+    cursor: pointer;
+}
+
+.google{
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+}
+.apple{
+    font-weight: 600;
+    background-color:white;
+}
+
+.account{
+    color:white;
+    font-weight: 550;
+    background-color: rgba(0, 0, 255, 0.646);
+}
+
+.sign-in{
+    color:white;
+    font-weight: 600;
+    background-color: rgb(109, 188, 109);
+}

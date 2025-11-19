@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Postway</title>
+</head>
+
+<body>
+    <div class="main">
+        <aside class="left">
+            <div class="header"><img src="../media/postway.jpg"><span>Postway</span></div>
+            <div class="container">
+                <div class="wrapper">
+                    <div class="options">
+                        <div class="home " ><span></span>Home</div>
+                        <div class="draft "><span></span>Draft</div>
+                        <div class="posts "><span></span>Posts</div>
+                        <div class="bookmark"><span></span>Bookmarks</div>
+
+                    </div>
+                </div>
+                <button class="postButton" type="submit">post</button>
+                <div id="userId" class="footerLeft"><span></span><p></p></div>
+            </div>
+
+        </aside>
+        <aside class="right">
+            <div class="header">Header</div>
+            <div class="postForm">
+                <div class="user center"><img src='/media/profile.png'></div>
+                <form action="/submit" method="POST" class="form1">
+                    <!-- Label for Accessibility -->
+                    <textarea id="postContent" name="content" rows="4" placeholder="write..." required></textarea>
+
+                    <!-- Action Buttons -->
+            
+                    <div class="form-actions">
+                        <span class="form-sub-actions">
+                            <span><img src="/media/image-gallery.png"></span>
+                            <span><img src="/media/emoji.png"></span>
+                        </span>
+                        <!-- Submit Button -->  
+                        <span class="post">Post</span>
+                    </div>
+                </form>
+            </div>
+            <div class="containerRight">
+                <div class="postContainer">
+                    <div class="wrapper">
+                        <div class="user center"><img src="/media/boy.png"></div>
+                        <div class="content">
+                            <div class="userInfo"><span>Md Riyazudding</span><span class="tag">@riyzmd774</span></div>
+                            <div class="postContent"><p>Whats App now has more than 1.9 billion users world wide
+                                But 97% don't know their true potential.
+                                Here are 10 essential tricks that you should know
+                            </p></div>
+                            <div class="postMedia"><img src="../media/demo.webp" ></div>
+                        </div>
+
+                    </div>
+                    <div class="post-footer">
+                        <div class="comments"></div>
+                        <div class="likes"></div>
+                        <div class="bookMark"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../js/postway.script.js"></script>
+
+</body>
+
+</html>

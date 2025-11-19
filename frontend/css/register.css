@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding:0;
+}
+body{
+    background-color: rgba(0, 0, 0, 0.115);
+}
+.container{
+    width:35%;
+    height: auto;
+    display: flex;
+    /* border: 1px solid; */
+    border-radius:10px;
+    padding:5px;
+    background-color: white;
+}
+
+.close-button{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.close-button img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.sub-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    height: 90%;
+    /* border: 1px solid; */
+}
+
+ul{
+    list-style: none;
+    width:95%;
+    height:100%;
+}
+ul li{
+    width: 100%;
+    min-height: 40px;
+    /* border: 1px solid; */
+    margin-bottom: 10px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img{
+    max-width: 50px;
+    max-height: 50px;
+    margin: 5px;
+}
+
+.header{
+    padding:2px 0px;
+}
+
+.form{
+    width: 100%;
+    height: auto;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding:5px 0px;
+}
+
+form input{
+    width: 95%;
+    height: 50px;
+    margin-bottom: 20px;
+    padding:5px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.next-button{
+    display: flex;
+    align-items: center;
+    padding:2px 0px;
+    cursor: pointer;
+}
+.next-button button{
+    width:95%;
+    height:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+    cursor: pointer;
+    
+}

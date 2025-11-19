@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            login
+        </title>
+        <link rel="stylesheet" type="text/css" href="../css/login.css">
+        <link rel="stylesheet" type="text/css" href="../css/loader.css">
+    </head>
+    <body>
+        <div class="overlay"></div>
+        <div class="popup center">hello this is a message</div>
+        <div class="main">
+
+
+
+            <div class="logo center"><img src="../media/postway_.png"></div>
+            <div class="login-options">
+                <h1 class="tag-line">Welcome to the Postway </h1>
+                <h3>Join today.</h3>
+                <div>
+                    <ul>
+                        <li class="sign-up account  center">Create New Account</li>
+                        <p >Already have an account?</p>
+                        <li class="sign-in account  center">Sign In Account</li>
+
+                    </ul>
+                
+
+                </div>
+            </div>
+
+
+            <div id="signIn" class="form-container " data-formId="signInform">
+                <div class="close-button"><img src="../media/close.png"></div>
+                <div class="form-sub-container">
+                    <span class="form-logo"><img src="../media/signup.png"></span>
+                    
+                    <ul>
+                        <h2>Sign in to Postway</h2>
+                        <li class="google center"><span></span> Sign in with Google</li>
+                        <li class="divider center"><span></span>or<span></span></li>
+                        <li class="form"><form id="emailForm">
+                            <input  id="email1" name="email" type="email" placeholder="Email">
+                            <button id="next-button" type="button" class="next-button"  >Next</button>
+                            <button type="button" class="forgot-button" >Forgot password?</button>
+                        </form></li>
+                        <p>Don't have account? <a href="?form=signup">sign up</a></p>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div id="nextForm" class="form-container " data-formId="passwordform">
+                <div class="close-button"><img src="../media/close.png"></div>
+                <div class="form-sub-container">
+                    <span class="form-logo"><img src="../media/signup.png"></span>
+                    
+                    <ul>
+                        <h2>Sign in to Postway</h2>
+                        <li class="google center"><span></span> Sign in with Google</li>
+                        <li class="divider center"><span></span>or<span></span></li>
+                        <li class="form"><form id="passwordForm">
+                            <input  id="email2" name="email" type="email" placeholder="Email">
+                            <input  id="password2" name="password" type="password" placeholder="Password">
+                            <button id="login-button" type="button" class="next-button">Login</button>
+                            <a href="#">forgot password?</a>
+                        </form></li>
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+
+            <div id="signUp" class="form-container " data-formId="registerForm">
+                <div class="close-button"><img src="../media/close.png"></div>
+                <div class="form-sub-container">
+                    <span class="form-logo"><img src="../media/signup.png"></span>
+                    
+                    <ul>
+                        <h2>Create New Account </h2>
+                        <li class="form"><form id="registerForm" >
+                            <input  id="name" name="name" type="text" placeholder="Name">
+                            <input  id="email3" name="email" type="email" placeholder="user@example.com">
+                            <input  id="password3" name="password" type="password" placeholder="Password">
+
+                            <button id="register" type="button" class="next-button" >Register</button>
+                        </form></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div id="loader">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+            </div>
+
+        </div>
+        <script type="module" src="../js/login.script.js"></script>
+        <script type="module" src="../js/form.script.js"></script>
+    </body>
+</html>
