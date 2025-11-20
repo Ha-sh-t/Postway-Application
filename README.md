@@ -109,7 +109,7 @@ Frontend is simple HTML/CSS/JS while backend is a full REST API powered by Node.
 ---
 
 # 📁 Project Structure
-
+```bash
 postway/
 │
 backend/
