@@ -276,7 +276,7 @@ Bookmark APIs
 
 ⸻
 
-🚀 Deployment (Render)
+🚀 Deployment (Render)(..working)
 
 1. Create Web Service
 	•	Go to Render → New → Web Service
@@ -297,7 +297,7 @@ EMAIL_PASSWORD
 GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET
 
-4. Deploy
+4. Deploy(on going changes in frontend)
 
 Render will give a URL like:
 
@@ -307,7 +307,7 @@ Use this inside frontend JS.
 
 ⸻
 
-🖼 Screenshots (Add later)
+🖼 Screenshots (later)
 
 ![Home Page](./screenshots/home.png)
 ![User Profile](./screenshots/profile.png)
@@ -334,7 +334,7 @@ If you liked this project:
 
 📬 Contact
 
-Developer: Rahul Singh
+Developer: Harshit Kumar
 GitHub: https://github.com/Ha-sh-t
 Project: Postway Application
 
