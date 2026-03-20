@@ -4,7 +4,7 @@ import { NotFoundError, UnexpectedError, ValidationError } from "../error-handle
 import LikeModel from "./like.model.js";
 import PostRepository from "../Post/post.repository.js";
 import CommentRepository from "../Comment/comment.repository.js";
-
+import UserRepository from "../User/user.repository.js";
 /**
  * This class is for handling the logic behind likes.
  * 
@@ -18,30 +18,44 @@ export default class LikeServices {
         this.likeRepository = new LikeRepository();
         this.postRepository = new PostRepository();
         this.commentRepository = new CommentRepository();
+        this.userRepository = new UserRepository();
     }
 
     /**
      * Get all likes for a given post or comment.
      * 
-     * @param {string} id - postId or commentId
+     * @param {string} id - postId or commentId or userId
      * @returns {Promise<object>} - success flag and likes data
      */
     async getLikes(id) {
-        // check if id is even a proper mongodb id
-        if (!ObjectId.isValid(id)) throw new ValidationError("Invalid Id");
+    if (!ObjectId.isValid(id)) {
+        throw new ValidationError("Invalid Id");
+    }
 
-        // check if it's a post or comment
-        const post = await this.postRepository.getByPostId(id);
-        if (!post) {
-            const comment = await this.commentRepository.findById(id);
-            if (!comment) throw new NotFoundError("Nothing exists with this Id");
-        }
-
-        // get likes from db
+    // 1.Check if ID belongs to a Post
+    const post = await this.postRepository.getByPostId(id);
+    if (post) {
         const likes = await this.likeRepository.getLikes(id);
+        return { success: true, data: likes, type: "post" };
+    }
+
+    // 2.Check if ID belongs to a Comment
+    const comment = await this.commentRepository.findById(id);
+    if (comment) {
+        const likes = await this.likeRepository.getLikes(id);
+        return { success: true, data: likes, type: "comment" };
+    }
+
+    // 3.Check if ID belongs to a User (user profile likes)
+    const user = await this.userRepository.getUser(id);
+    if (user) {
+        const likes = await this.likeRepository.getLikesByUserId(id);
         return { success: true, data: likes };
     }
 
+    // ID belongs to nothing
+    throw new NotFoundError("Nothing exists with this Id");
+}
     /**
      * Add or remove like for a post or comment.
      * If user already liked, remove it.
@@ -52,6 +66,7 @@ export default class LikeServices {
      * @returns {Promise<object>} - success flag and message
      */
     async toggleLike(id, userId) {
+        console.log("toggleLike is called,")
         let item = "post";
 
         // check if id is post or comment

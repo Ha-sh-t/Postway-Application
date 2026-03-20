@@ -16,10 +16,8 @@ import { ApplicationError } from "../error-handler/applicationError.js"
  * @throws {ApplicationError} If no active user session is found
  */
 export function sessionAuth(req , res , next){
-    console.log(req.session.user)
     if(!req.session.user){
        return next(new ApplicationError("Please login first." , 401)) 
-
     }
     next()
 }

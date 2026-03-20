@@ -51,8 +51,6 @@ const isDataCorrectlyEntered = async (req, res, next) => {
           
           next();
     }else{
-        console.log('Content-Type:', req.headers['content-type']);
-        console.log(req.body)
         const rules = [
           body('name').notEmpty().withMessage('Name is required'),
           body('email').notEmpty().withMessage('Email is required'),

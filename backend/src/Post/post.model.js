@@ -5,14 +5,14 @@ import { likes } from "../Like/like.model.js";
 
 class PostModel{
 
-    constructor(userId , caption , postUrl, content,date , likes = 0 , comments = 0 ){
+    constructor(userId , caption , postUrl,date , likes = 0 , comments = 0 ){
         this.userId = userId;
         this.caption = caption ;
         this.postUrl = postUrl;
         this.date = date
         this.likes = likes;
         this.comments = comments;
-        this.content = content;
+        
     }
 
 

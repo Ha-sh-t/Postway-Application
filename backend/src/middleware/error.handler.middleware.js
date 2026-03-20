@@ -24,7 +24,7 @@ export function errorHandler(err, req, res, next) {
     if(err.type == 'application'){
         const status = err.code;
         const message = err.message;
-        return res.status(status).json({error:message});
+        return res.status(status).json({message});
     }
 
     //server or internal errors

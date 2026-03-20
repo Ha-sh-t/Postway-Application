@@ -2,6 +2,7 @@ import { getDB } from "../config/mongodb.config.js";
 import PostRepository from "./post.repository.js";
 import PostModel from "./post.model.js";
 import UserRepository from "../User/user.repository.js";
+import LikeServices from "../Like/like.services.js";
 import { ObjectId } from "mongodb";
 import { NotFoundError, ValidationError ,ForbiddenError} from "../error-handler/business.layer.error.js";
 
@@ -12,6 +13,8 @@ export default class PostService {
     constructor() {
         this.postRepository = new PostRepository();
         this.userRepository = new UserRepository();
+        this.likeServices = new LikeServices();
+
         this.collection = getDB().collection('Post');
     }
 
@@ -29,7 +32,7 @@ export default class PostService {
         if(!ObjectId.isValid(userId)) throw new ValidationError("Incorrect userId.");
 
             const date = new Date().toString();
-            const newPost = new PostModel(new ObjectId(userId), caption, imageUrl, content, date);
+            const newPost = new PostModel(new ObjectId(userId), caption, imageUrl, date);
             const result = await this.postRepository.add(newPost);
             return result;
 
@@ -43,9 +46,22 @@ export default class PostService {
      */
     async getAll(n) {
         try {
-            const si = 4 * (n - 1); // starting index for 4 posts per page
-            const posts = await this.postRepository.getAll();
-            return posts.filter((p, i) => i >= si && i < si + 4);
+            //n would tell page no.
+            const pageSize = 4;
+            const startIndex = (n-1)*pageSize;
+            let posts = await this.postRepository.getPaginated(startIndex , pageSize);
+            const likes = await this.likeServices.getLikes();
+
+            const likeCount = {};
+            likes.map(like =>{
+                // temp[like.itemId] +=1;
+                likeCount[like.itemId] = (likeCount[like.itemId] || 0) + 1;
+            });
+            posts.forEach((post)=>{
+                post.likes = (likeCount[post._id] || 0);
+            });
+            return {success:true , posts:posts};
+
         } catch (error) {
             throw error;
         }

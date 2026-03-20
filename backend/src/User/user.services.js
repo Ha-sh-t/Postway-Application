@@ -62,17 +62,15 @@ class UserServices {
      * @throws {Error} For internal server errors.
      */
     async signUp({ name, email, gender,password }) {
-        console.log("call for signup")
         const hashedPassword = await hashPassword(password);
-
         // Check if user already exists
         const isUser = await this.userRepository.find(email);
         if (isUser) throw new ValidationError("User already exists.");
 
         const user = new UserModel(name, email,gender, hashedPassword);
         const result = await this.userRepository.add(user);
-        if(!result) throw new UnexpectedError("Unexpected Error:Enable to register User");
-        return {success:true,message:"Registered Successfully!"}
+        if(!result) throw new UnexpectedError("Unexpected Error:Enable to register user");
+        return {success:true,message:"Registered successfully"}
     }
 
     /**

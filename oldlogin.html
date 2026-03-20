@@ -1,0 +1,110 @@
+// login page 
+import './utils.script.js'
+import './form.script.js'
+const signIn_button = document.getElementsByClassName('sign-in')[0];
+const signUp_button = document.getElementsByClassName('sign-up')[0];
+
+
+
+//event handlers ------
+
+const handleSignInButtonClick = () => {
+    console.log("signin button clicked")
+    history.replaceState(null, '', '?form=signin');
+}
+const handleSignUpButtonClick = () => {
+    history.replaceState(null, '', '?form=signup');
+}
+
+//form handlers--
+const openSignUpform = (event) => {
+    if (event) event.preventDefault();
+    document.querySelector('.overlay').style.display = 'block';
+    const form = document.querySelector('#signUp');
+    form.style.display = 'flex';
+
+}
+
+const openSignInform = (event) => {
+    console.log("sign in form : " , event);
+    if (event) event.preventDefault();//prevent default behavior i.e auto submission
+    document.querySelector('.overlay').style.display = 'block';
+    const form = document.querySelector('#signIn');
+    form.style.display = 'flex';
+
+}
+
+export const openNextForm = () => {
+    document.querySelector('.overlay').style.display = 'block';
+    const formContainer = document.querySelector('#nextForm');
+    const form = document.querySelector('#passwordForm')
+    form.elements['email'].value = localStorage.getItem('email');
+    console.log(localStorage.getItem('email'))
+    form.elements['email'].disabled = true
+    formContainer.style.display = 'flex';
+
+}
+
+
+
+// Adding event listeners
+
+signIn_button.addEventListener("click", handleSignInButtonClick);
+signUp_button.addEventListener("click", handleSignUpButtonClick);
+
+document.querySelector('.overlay').addEventListener('click', close);
+
+
+
+//handling page loading
+
+
+
+
+
+//backward - forward buttons
+window.addEventListener('popstate', () => {
+    const params = new URLSearchParams(window.location.search);
+    console.log(window.location.href);
+
+    if (params.get('form') === 'signin') {
+        console.log("signin popstate called");
+
+        openSignInform();
+    }
+    else if (params.get('form') === 'signup') {
+        console.log("signup popstate called");
+
+        openSignUpform()
+    }
+    else {
+        console.log("close called ")
+
+    }
+})
+
+/*-------------------- URL HANDLING --------------------*/
+window.addEventListener('urlChange' , ()=>{
+    const params = new URLSearchParams(window.location.search);
+
+    if(params.get('form') === 'signin'){
+        console.log("urlChange Event triggered.");
+        openSignInform();
+    }
+    else if (params.get('form') === 'signup') {
+        console.log("signup urlChange event triggered.");
+        openSignUpform()
+    }
+    else {
+        console.log("close called ")
+    }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('form')) {
+        history.replaceState(null , "",'/frontend/html/login.html');
+    }
+
+
+});

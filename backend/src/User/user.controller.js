@@ -27,7 +27,7 @@ export default class UserController {
     async signUp(req, res, next) {
         //code here
         try {
-            const { name, email, gender,password } = req.body
+            const { name, email,gender,password } = req.body
             const response = await this.userServices.signUp({ name, email, gender, password})
             return res.status(201).json(response)
         } catch (err) {
@@ -57,14 +57,16 @@ export default class UserController {
     //function handling user login operation 
     async login(req, res, next) {
         try {
+            console.log("login requested.")
             if (req.session.user) {
-                throw new ApplicationError("Already logged in.", 400)
+                req.session.destroy(() => {});
             }
             const { email, password } = req.body;
             const sessionId = req.sessionID;
             const response = await this.userServices.signIn({ email, password, sessionId });
             console.log("response: ", response)
             if (response.success && response.message.includes("Login successful")) {
+                console.log("session created..");
                 req.session.user = {
                     _id: response.user._id,
                     email,

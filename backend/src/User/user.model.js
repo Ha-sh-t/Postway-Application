@@ -7,7 +7,6 @@ class UserModel{
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.avatarUrl = undefined
     }
 }
 

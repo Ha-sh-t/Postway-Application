@@ -1,5 +1,5 @@
 import  './src/config/dotenv.config.js'
-
+import path from 'path';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import commentRouter from './src/Comment/comment.routes.js';
@@ -20,9 +20,14 @@ app.use(cors({
     origin:['http://localhost:5500','http://127.0.0.1:5500'],
     credentials:true
 }));  
+// app.use(cors({
+//     origin: "http://127.0.0.1:5500",
+//     credentials: true
+// }));
 
-
-app.use(express.static('./src/'))
+const __dirname = path.resolve(); // if using ESModules
+console.log(__dirname);
+app.use("/media", express.static(path.join(__dirname, "uploads")));
 
 app.use(cookieParser())
 app.use(express.urlencoded({extended:true})); //parsing url data to json

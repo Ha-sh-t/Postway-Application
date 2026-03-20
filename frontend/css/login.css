@@ -77,7 +77,7 @@ ul{
 li{
     width: 250px;
     height: 30px;
-    border: 1px solid;
+    /* border: 1px solid; */
     border-radius: 20px;
     margin-bottom: 10px;
     padding:5px;
@@ -152,6 +152,7 @@ ul>p>span{
 }
 
 /* Sign In / Sign Up */
+
 .form-container{
     display:none;
     position: absolute;
@@ -198,7 +199,7 @@ ul>p>span{
     flex-direction: column;
     justify-content: space-between;
     width: 90%;
-    height: 90%;
+    height:auto;
     /* border: 1px solid; */
 }
 .form-logo{
@@ -298,6 +299,22 @@ cursor: pointer;
 a{
     text-decoration: none;
 }
+
+select{
+       width: 70%;
+    height: 50px;
+    margin-bottom: 20px;
+    padding-left:15px;
+    box-sizing: border-box;
+    vertical-align: top;
+    border-radius: 10px;
+    font-size:large;
+    letter-spacing:2px;
+    background-color:white; 
+
+}
+
+
 /* overlay effect */
 
 .overlay{
@@ -311,19 +328,37 @@ a{
     background-color: rgba(0,0,0,0.3);
 }
 
-.popup{
-    position:fixed;
+.popup {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 280px;
+    max-width: 80%;
+    padding: 18px 30px;
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #333;
+
+    text-align: center;
+    letter-spacing: 0.5px;
     
-    left:40%;
-    top:10%;
-    display: none;
-    border:4px solid #987403;
-    font-size:1.5rem;
-    letter-spacing: 1px;
-    word-spacing: 5px;
-    font-weight: 400;
-    padding:15px;
-    color:#ffd96a;
-    background-color: #332602;
-    box-shadow: #493903;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+
+    border: none;
+
+    display:none;   /* hidden by default */
+
+    z-index: 9999;
+    animation: fadePopup 0.3s ease-out;
+}
+
+/* Smooth fade + scale animation */
+@keyframes fadePopup {
+    from { opacity: 0; transform: translate(-50%, -45%) scale(0.95); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }

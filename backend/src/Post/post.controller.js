@@ -18,12 +18,13 @@ export default class PostController {
      */
     async createNewPost(req, res, next) {
         try {
-            const { caption, content } = req.body;
+            console.log("req body @ createNewPost:",req.body);
+            const { caption } = req.body;
             const userId = req.session.user._id;
-            console.log(userId)
-            const imageUrl = '/media/posts/' + req.file.filename;
+            console.log("createNewPost userid : " ,userId)
+            const imageUrl = 'http://localhost:3000/media/posts/' + req.file.filename;
 
-            const response = await this.postServices.createNewPost({ userId, caption, imageUrl, content });
+            const response = await this.postServices.createNewPost({ userId, caption, imageUrl });
 
             if (response.acknowledged) {
                 return res.status(201).json({ success: true, message: "New post posted successfully." });
@@ -43,9 +44,9 @@ export default class PostController {
      */
     async getAll(req, res, next) {
         try {
-            const n = req.query.page;
+            const n = req.query.page || 1;
             const posts = await this.postServices.getAll(n);
-            res.status(200).json({ success: true, posts });
+            res.status(200).json({ success: true, posts:posts });
         } catch (err) {
             next(err);
         }

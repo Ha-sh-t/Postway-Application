@@ -20,15 +20,19 @@ const userRouter = express.Router();
 
 const userController = new UserController();
 
+
+/**
+ * 
+ */
+userRouter.get('/check-session',sessionAuth);
 /**
  * @route POST /api/users/signup
  * @desc Registers a new user
- * @access Public
  * @middleware isDataCorrectlyEntered - Validates input fields
  */
 userRouter.post('/signup' ,isDataCorrectlyEntered, (req , res , next)=>{
     userController.signUp(req , res , next)
-})
+});
 
 /**
  * @route POST /api/users/signin

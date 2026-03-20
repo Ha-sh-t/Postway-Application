@@ -30,7 +30,7 @@ class PostRepository {
      * @returns {Promise<Array>} - Array of post objects.
      * @throws Will throw an error if retrieval fails.
      */
-    async getAll() {
+    async getPaginated(startIndex , endIndex) {
         try {
             const posts = await this.collection.find().sort({ date: -1 }).toArray();
             console.log("posts:", posts);

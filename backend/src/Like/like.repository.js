@@ -77,9 +77,14 @@ class LikeRepository {
      * @param {string} id - Item ID (post or comment).
      * @returns {Promise<Object[]>} Array of like documents.
      */
-    async getLikes(id) {
+    async getLikes(id , ) {
         const likes = await this.collection.find({ itemId: new ObjectId(id) }).toArray();
-        console.log(likes);
+        console.log(`likes corresponding to id ${id} are ${likes}`);
+        return likes;
+    }
+    async getLikesByUserId(userId){
+        const likes = await this.collection.find({userId:new ObjectId(userId)}).toArray();
+        console.log(`likes corresponding to useId ${userId} are ${likes}`);
         return likes;
     }
 }
